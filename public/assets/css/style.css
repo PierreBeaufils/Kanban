@@ -1,0 +1,16 @@
+html {
+  background-color: #ccc;
+  overflow-x: auto;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.card-lists {
+  overflow-x: auto;
+}
+
+.box {
+  border-bottom: 5px solid grey;
+}

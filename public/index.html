@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kanban</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+    <section class="section ">
+        <div class="container">
+            <h1 class="title">
+                Kanban
+            </h1>
+            <div class="columns" id="listContainer">
+                
+                <!-- Ici il y aura les listes construites en JS en fonction de la réponse de l'api -->
+
+                <div class="column filter" id="addColumn">
+                    <button class="button is-success" id="addListButton">
+                        <span class="icon is-small">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        &nbsp; Ajouter une liste
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="addListModal">
+        <div class="modal-background close"></div>
+        <div class="modal-card">
+            <form id="addListForm" action="" method="POST">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Ajouter une liste</p>
+                    <button class="delete close" type="button" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">Nom</label>
+                        <div class="control">
+                            <input type="text" class="input" name="listName" value="" placeholder="Nom de la liste">
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success">Save changes</button>
+                    <button class="button close" type="button">Cancel</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="addCardModal">
+        <div class="modal-background close"></div>
+        <div class="modal-card">
+            <form id="addCardForm" action="" method="POST">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Ajouter une carte</p>
+                    <button class="delete close" type="button" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">Nom</label>
+                        <div class="control">
+                            <input type="text" class="input" name="title" value="" placeholder="Nom de la carte">
+                            <input type="hidden" name="list_id" value="">
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success">Save changes</button>
+                    <button class="button close" type="button">Cancel</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+
+    <!-- Le contenu d'une balise template n'a pas vocation à être affiché directement, mais uniquement à être cloné en javascript -->
+    <template id="listTemplate">
+        <!-- list -->
+        <div class="column is-one-quarter panel listItem" data-list-id="?????">
+            <div class="panel-heading has-background-info">
+                <div class="columns">
+
+                    <div class="column">
+                        <h2 class="has-text-white">????</h2>
+
+                        <form action="" method="POST" class="is-hidden">
+                            <input type="hidden" name="list-id" value="????">
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input type="text" class="input is-small" name="listName" value=""
+                                        placeholder="Nom de la liste">
+                                </div>
+                                <div class="control">
+                                    <button class="button is-small is-success">Valider</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="column is-narrow">
+                        <a href="#" class="is-pulled-right">
+                            <span class="icon is-small has-text-white">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-block is-block has-background-light">
+                <!-- ici viendront les cartes de ma nouvelle liste -->
+            </div>
+        </div>
+        <!--/ list -->
+    </template>
+
+    <!-- le template des cartes -->
+    <template id="cardTemplate">
+        <!-- card -->
+        <div class="box" data-card-id="???">
+            <div class="columns">
+                <div class="column card-name">
+                    ???
+                </div>
+                <form class="column is-hidden">
+                    <input class="input" type="text" name="title" placeholder="Nom de la carte">
+                </form>
+                <div class="column is-narrow">
+                    <a href="#" class="editBtn">
+                        <span class="icon is-small has-text-primary">
+                            <i class="fas fa-pencil-alt"></i>
+                        </span>
+                    </a>
+                    <a class="deleteBtn" href="#">
+                        <span class="icon is-small has-text-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--/ card -->
+    </template>
+
+    <!-- Load bundle script -->
+    <script src="./assets/js/bundle.js"></script>
+</body>
+
+</html>
